@@ -134,6 +134,16 @@ const NurseryFeeCalculator = () => {
           </div>
         </div>
 
+      {/* Advertisement Banner - ADD THIS HERE */}
+      <div className="mx-6 mt-6 mb-2">
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+            <span className="text-gray-400 text-sm">Loading advertisement...</span>
+          </div>
+        </div>
+      </div>
+
         <div className="p-6 space-y-8">
           {/* Pre-qualification Section */}
           <div>
@@ -530,6 +540,16 @@ const NurseryFeeCalculator = () => {
             </div>
           </div>
 
+      {/* Advertisement Banner - ADD THIS HERE */}
+      <div className="mx-6 mt-6 mb-2">
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+            <span className="text-gray-400 text-sm">Loading advertisement...</span>
+          </div>
+        </div>
+      </div>
+
           {/* Results Section */}
           <div className="space-y-6">
             <h2 className="text-xl font-semibold text-gray-800">Cost Breakdown</h2>
@@ -621,6 +641,16 @@ const NurseryFeeCalculator = () => {
                   Nappies, wipes, food, etc. - not eligible for free hours or tax-free childcare
                 </div>
               </div>
+
+      {/* Advertisement Banner - ADD THIS HERE */}
+      <div className="mx-6 mt-6 mb-2">
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+            <span className="text-gray-400 text-sm">Loading advertisement...</span>
+          </div>
+        </div>
+      </div>
 
               <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-4 rounded-lg text-white">
                 <div className="text-lg font-bold mb-4 text-center">My Childcare Costs</div>
