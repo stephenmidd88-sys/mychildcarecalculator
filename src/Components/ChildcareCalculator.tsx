@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Calculator, Clock, PoundSterling, Users, Info } from 'lucide-react';
 
 const NurseryFeeCalculator = () => {
