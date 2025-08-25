@@ -1,0 +1,46 @@
+# Robots.txt for mychildcarecalculator.co.uk
+
+User-agent: *
+
+# Allow access to main site content
+Allow: /
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block search results and filtered pages (if applicable)
+Disallow: /*?*
+Disallow: /search/
+
+# Block duplicate content or print versions
+Disallow: /print/
+Disallow: /*print*
+
+# Block any staging or development areas
+Disallow: /dev/
+Disallow: /staging/
+Disallow: /test/
+
+# Block specific file types that shouldn't be indexed
+Disallow: *.json$
+Disallow: *.xml$ 
+Disallow: *.txt$
+Disallow: *.log$
+
+# Allow CSS and JS files (important for site rendering)
+Allow: *.css$
+Allow: *.js$
+
+# Sitemap location (update this path when you create your sitemap)
+Sitemap: https://mychildcarecalculator.co.uk/sitemap.xml
+
+# Crawl delay (optional - only add if you experience server load issues)
+# Crawl-delay: 1
