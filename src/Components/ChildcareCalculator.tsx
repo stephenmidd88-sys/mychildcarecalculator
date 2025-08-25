@@ -9,14 +9,13 @@ const NurseryFeeCalculator = () => {
   const [selectedDays, setSelectedDays] = useState(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
   const [hoursPerDay, setHoursPerDay] = useState(10.5);
   const [dailyCharge, setDailyCharge] = useState(65.00);
-  const [dailyConsumables, setDailyConsumables] = useState(5.00);
+
   const [isFullYear, setIsFullYear] = useState(true); // true = 52 weeks, false = 38 weeks (term-time)
   const [hasTaxFreeAccount, setHasTaxFreeAccount] = useState(true);
   
   const [results, setResults] = useState({
     totalWeeklyCost: 0,
     totalChildcareWeeklyCost: 0,
-    weeklyConsumablesCost: 0,
     freeHours: 0,
     freeDaysPerWeek: 0,
     chargableDaysPerWeek: 0,
@@ -76,14 +75,10 @@ const NurseryFeeCalculator = () => {
     const totalChildcareWeeklyCost = daysPerWeek * dailyCharge;
     const childcareAfterFreeHours = chargableDaysPerWeek * dailyCharge;
     
-    // Consumables costs (not eligible for government support)
-    const weeklyConsumablesCost = daysPerWeek * dailyConsumables;
-    
     // Combined total before any support
-    const totalWeeklyCost = totalChildcareWeeklyCost + weeklyConsumablesCost;
+    const totalWeeklyCost = totalChildcareWeeklyCost;
     
     // Tax-free childcare: 20% government contribution, max £2000/year per child
-    // Only applies to childcare fees, NOT consumables
     const maxAnnualTaxFree = 2000;
     const maxWeeklyTaxFree = maxAnnualTaxFree / weeksPerYear;
     const potentialTaxFreeContribution = childcareAfterFreeHours * 0.2;
@@ -92,7 +87,7 @@ const NurseryFeeCalculator = () => {
     
     // Final costs
     const childcareAfterAllSupport = childcareAfterFreeHours - actualTaxFreeContribution;
-    const finalWeeklyCost = childcareAfterAllSupport + weeklyConsumablesCost;
+    const finalWeeklyCost = childcareAfterAllSupport;
     const monthlyAfterSupport = finalWeeklyCost * (weeksPerYear / 12);
     const annualAfterSupport = finalWeeklyCost * weeksPerYear;
 
@@ -104,7 +99,6 @@ const NurseryFeeCalculator = () => {
     setResults({
       totalWeeklyCost,
       totalChildcareWeeklyCost,
-      weeklyConsumablesCost,
       freeHours: freeHoursPerWeek,
       freeDaysPerWeek: freeDaysPerWeek,
       chargableDaysPerWeek: chargableDaysPerWeek,
@@ -119,7 +113,7 @@ const NurseryFeeCalculator = () => {
       isWithinTaxFreeLimit,
       daysPerWeek
     });
-  }, [childAge, userAge, meetsIncomeThreshold, hasHighEarner, selectedDays, hoursPerDay, dailyCharge, dailyConsumables, hasTaxFreeAccount, isFullYear]);
+  }, [childAge, userAge, meetsIncomeThreshold, hasHighEarner, selectedDays, hoursPerDay, dailyCharge, hasTaxFreeAccount, isFullYear]);
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -429,7 +423,7 @@ const NurseryFeeCalculator = () => {
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-medium text-gray-700">
                     <PoundSterling className="inline w-4 h-4 mr-1" />
-                    Daily charge
+                    Daily charge, including any consumables
                   </label>
                   <div className="flex items-center gap-1">
                     <span className="text-sm text-gray-500">£</span>
@@ -462,48 +456,6 @@ const NurseryFeeCalculator = () => {
                   <span>£0</span>
                   <span>£150</span>
                 </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    <PoundSterling className="inline w-4 h-4 mr-1" />
-                    Daily consumables
-                  </label>
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm text-gray-500">£</span>
-                    <input
-                      type="number"
-                      value={dailyConsumables}
-                      onChange={(e) => setDailyConsumables(Math.max(0, Math.min(25, parseFloat(e.target.value) || 0)))}
-                      min="0"
-                      max="25"
-                      step="0.25"
-                      className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-                <div className="relative">
-                  <input
-                    type="range"
-                    value={dailyConsumables}
-                    onChange={(e) => setDailyConsumables(parseFloat(e.target.value))}
-                    min="0"
-                    max="25"
-                    step="0.25"
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    style={{
-                      background: `linear-gradient(to right, #f59e0b 0%, #f59e0b ${(dailyConsumables/25)*100}%, #e5e7eb ${(dailyConsumables/25)*100}%, #e5e7eb 100%)`
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
-                  <span>£0</span>
-                  <span>£25</span>
-                </div>
-                <p className="text-xs text-gray-500 mt-1">
-                  Cost of nappies, wipes, food, etc. (not eligible for government support)
-                </p>
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
@@ -594,22 +546,12 @@ const NurseryFeeCalculator = () => {
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-600">Childcare cost (no support)</span>
-                  <span className="font-semibold">£{results.totalChildcareWeeklyCost.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-600">Consumables cost</span>
-                  <span className="font-semibold">£{results.weeklyConsumablesCost.toFixed(2)}</span>
-                </div>
-                <div className="border-t border-gray-300 pt-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 font-medium">Total weekly cost (no support)</span>
-                    <span className="font-bold">£{results.totalWeeklyCost.toFixed(2)}</span>
-                  </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 font-medium">Total weekly cost (no support)</span>
+                  <span className="font-bold">£{results.totalWeeklyCost.toFixed(2)}</span>
                 </div>
                 <div className="text-sm text-gray-500 mt-1">
-                  {results.daysPerWeek} days × £{dailyCharge.toFixed(2)}/day + {results.daysPerWeek} days × £{dailyConsumables.toFixed(2)}/day consumables ({results.hoursPerWeek} hours/week)
+                  {results.daysPerWeek} days × £{dailyCharge.toFixed(2)}/day ({results.hoursPerWeek} hours/week)
                 </div>
               </div>
 
@@ -656,16 +598,6 @@ const NurseryFeeCalculator = () => {
                   </div>
                 </div>
               )}
-
-              <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                <div className="flex justify-between items-center">
-                  <span className="text-orange-700">Consumables (no government support)</span>
-                  <span className="font-semibold text-orange-700">+£{results.weeklyConsumablesCost.toFixed(2)}</span>
-                </div>
-                <div className="text-sm text-orange-600 mt-1">
-                  Nappies, wipes, food, etc. - not eligible for free hours or tax-free childcare
-                </div>
-              </div>
 
 {/* Advertisement Banner */}
 <div className="mx-6 mt-6 mb-2">
@@ -729,28 +661,13 @@ const NurseryFeeCalculator = () => {
                       </tr>
                       
                       {hasTaxFreeAccount && results.taxFreeContribution > 0 && (
-                        <>
-                          <tr>
-                            <td className="py-1">Tax-Free Childcare Saving</td>
-                            <td className="text-right py-1 font-semibold">-£{results.taxFreeContribution.toFixed(0)}</td>
-                            <td className="text-right py-1 font-semibold">-£{(results.taxFreeContribution * (results.weeksPerYear / 12)).toFixed(0)}</td>
-                            <td className="text-right py-1 font-semibold">-£{(results.taxFreeContribution * results.weeksPerYear).toFixed(0)}</td>
-                          </tr>
-                          <tr>
-                            <td className="py-1">Your New Nursery Costs </td>
-                            <td className="text-right py-1 font-semibold">£{(results.weeklyAfterFreeHours - results.taxFreeContribution).toFixed(0)}</td>
-                            <td className="text-right py-1 font-semibold">£{((results.weeklyAfterFreeHours - results.taxFreeContribution) * (results.weeksPerYear / 12)).toFixed(0)}</td>
-                            <td className="text-right py-1 font-semibold">£{((results.weeklyAfterFreeHours - results.taxFreeContribution) * results.weeksPerYear).toFixed(0)}</td>
-                          </tr>
-                        </>
+                        <tr>
+                          <td className="py-1">Tax-Free Childcare Saving</td>
+                          <td className="text-right py-1 font-semibold">-£{results.taxFreeContribution.toFixed(0)}</td>
+                          <td className="text-right py-1 font-semibold">-£{(results.taxFreeContribution * (results.weeksPerYear / 12)).toFixed(0)}</td>
+                          <td className="text-right py-1 font-semibold">-£{(results.taxFreeContribution * results.weeksPerYear).toFixed(0)}</td>
+                        </tr>
                       )}
-                      
-                      <tr>
-                        <td className="py-1">Consumables</td>
-                        <td className="text-right py-1 font-semibold">£{results.weeklyConsumablesCost.toFixed(0)}</td>
-                        <td className="text-right py-1 font-semibold">£{(results.weeklyConsumablesCost * (results.weeksPerYear / 12)).toFixed(0)}</td>
-                        <td className="text-right py-1 font-semibold">£{(results.weeklyConsumablesCost * results.weeksPerYear).toFixed(0)}</td>
-                      </tr>
                       
                       <tr className="border-t border-indigo-300">
                         <td className="py-2 font-bold text-base">Total</td>
@@ -768,7 +685,7 @@ const NurseryFeeCalculator = () => {
                 <div className="bg-green-100 p-4 rounded-lg border border-green-300">
                   <div className="flex items-center gap-2 text-green-800 font-semibold mb-2">
                     <Info className="w-4 h-4" />
-                    Total Government Support (Childcare Only)
+                    Total Government Support
                   </div>
                   <div className="space-y-1 text-sm text-green-700">
                     {results.freeHours > 0 && (
@@ -778,10 +695,7 @@ const NurseryFeeCalculator = () => {
                       <div>Tax-free childcare: £{(results.taxFreeContribution * results.weeksPerYear).toFixed(2)}/year</div>
                     )}
                     <div className="font-semibold border-t border-green-300 pt-1">
-                      Total childcare savings: £{((results.totalChildcareWeeklyCost - (results.weeklyAfterFreeHours - results.taxFreeContribution)) * results.weeksPerYear).toFixed(2)}/year
-                    </div>
-                    <div className="text-xs text-green-600 mt-1">
-                      Note: Government support only applies to childcare fees, not consumables
+                      Total savings: £{((results.totalChildcareWeeklyCost - (results.weeklyAfterFreeHours - results.taxFreeContribution)) * results.weeksPerYear).toFixed(2)}/year
                     </div>
                   </div>
                 </div>
@@ -797,7 +711,6 @@ const NurseryFeeCalculator = () => {
             <li>• 30 free hours are available for children 9 months - 4 years whose parents meet income thresholds</li>
             <li>• Income thresholds: Under 18/Apprentice (£1,570), 18-20 (£2,080), 21+ (£2,539) per person over 3 months</li>
             <li>• Families are disqualified if either parent earns over £100,000 per annum</li>
-            <li>• Consumables (nappies, wipes, food, etc.) are not eligible for free hours or tax-free childcare support</li>
             <li>• Free hours funding is term-time based (38 weeks) but can be "stretched" across 52 weeks if attending full-time</li>
             <li>• Use nursery-stipulated session times (e.g., 7.30am until 6pm = 10.5 hours), not your personal drop-off/collection times</li>
             <li>• Daily charges should reflect the full hours for which your child can attend nursery, regardless as to whether you maximise these hours. For example, if you choose the full day rate of 7.30am until 6pm, but drop your child off at 8am and collect at 5.30pm, the nursery will still charge you for the full day hours.</li>
