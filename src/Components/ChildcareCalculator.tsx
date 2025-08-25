@@ -134,15 +134,27 @@ const NurseryFeeCalculator = () => {
           </div>
         </div>
 
-      {/* Advertisement Banner - ADD THIS HERE */}
-      <div className="mx-6 mt-6 mb-2">
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
-          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
-            <span className="text-gray-400 text-sm">Loading advertisement...</span>
-          </div>
-        </div>
-      </div>
+{/* Advertisement Banner */}
+<div className="mx-6 mt-6 mb-2">
+  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+    <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+    <div id="awin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+      {/* AWIN Advertisement */}
+      <a 
+        rel="sponsored" 
+        href="https://www.awin1.com/cread.php?s=3870744&v=112284&q=513045&r=2532679"
+        className="block"
+      >
+        <img 
+          src="https://www.awin1.com/cshow.php?s=3870744&v=112284&q=513045&r=2532679" 
+          alt="Frutteto Italia fruit spread"
+          className="max-w-full h-auto"
+          style={{ border: 0 }}
+        />
+      </a>
+    </div>
+  </div>
+</div>
 
         <div className="p-6 space-y-8">
           {/* Pre-qualification Section */}
@@ -540,15 +552,28 @@ const NurseryFeeCalculator = () => {
             </div>
           </div>
 
-      {/* Advertisement Banner - ADD THIS HERE */}
-      <div className="mx-6 mt-6 mb-2">
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
-          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
-            <span className="text-gray-400 text-sm">Loading advertisement...</span>
-          </div>
-        </div>
-      </div>
+{/* Advertisement Banner */}
+<div className="mx-6 mt-6 mb-2">
+  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+    <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+    <div id="awin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+      {/* START ADVERTISER: Frutteto Italia fruit spread from awin.com */}
+      <a 
+        rel="sponsored" 
+        href="https://www.awin1.com/cread.php?s=3870741&v=112284&q=513045&r=2532679"
+        className="block"
+      >
+        <img 
+          src="https://www.awin1.com/cshow.php?s=3870741&v=112284&q=513045&r=2532679" 
+          alt="Frutteto Italia fruit spread"
+          className="max-w-full h-auto"
+          style={{ border: 0 }}
+        />
+      </a>
+      {/* END ADVERTISER: Frutteto Italia fruit spread from awin.com */}
+    </div>
+  </div>
+</div>
 
           {/* Results Section */}
           <div className="space-y-6">
@@ -642,15 +667,28 @@ const NurseryFeeCalculator = () => {
                 </div>
               </div>
 
-      {/* Advertisement Banner - ADD THIS HERE */}
-      <div className="mx-6 mt-6 mb-2">
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
-          <p className="text-xs text-gray-500 mb-2">Advertisement</p>
-          <div id="dwin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
-            <span className="text-gray-400 text-sm">Loading advertisement...</span>
-          </div>
-        </div>
-      </div>
+{/* Advertisement Banner */}
+<div className="mx-6 mt-6 mb-2">
+  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center">
+    <p className="text-xs text-gray-500 mb-2">Advertisement</p>
+    <div id="awin-ad-banner" className="min-h-[100px] flex items-center justify-center bg-white rounded">
+      {/* START ADVERTISER: Liomen: Prime Skincare from awin.com */}
+      <a 
+        rel="sponsored" 
+        href="https://www.awin1.com/cread.php?s=3362521&v=50017&q=461498&r=2532679"
+        className="block"
+      >
+        <img 
+          src="https://www.awin1.com/cshow.php?s=3362521&v=50017&q=461498&r=2532679" 
+          alt="Liomen: Prime Skincare"
+          className="max-w-full h-auto"
+          style={{ border: 0 }}
+        />
+      </a>
+      {/* END ADVERTISER: Liomen: Prime Skincare from awin.com */}
+    </div>
+  </div>
+</div>
 
               <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-4 rounded-lg text-white">
                 <div className="text-lg font-bold mb-4 text-center">My Childcare Costs</div>
