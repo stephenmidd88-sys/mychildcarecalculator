@@ -142,11 +142,11 @@ const NurseryFeeCalculator = () => {
       {/* AWIN Advertisement */}
       <a 
         rel="sponsored" 
-        href="https://www.awin1.com/cread.php?s=3870744&v=112284&q=513045&r=2532679"
+        href="https://www.awin1.com/cread.php?s=3542947&v=70252&q=480771&r=2532679"
         className="block"
       >
         <img 
-          src="https://www.awin1.com/cshow.php?s=3870744&v=112284&q=513045&r=2532679" 
+          src="https://www.awin1.com/cshow.php?s=3542947&v=70252&q=480771&r=2532679" 
           alt="Frutteto Italia fruit spread"
           className="max-w-full h-auto"
           style={{ border: 0 }}
