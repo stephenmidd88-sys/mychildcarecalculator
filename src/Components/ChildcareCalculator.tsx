@@ -675,11 +675,11 @@ const NurseryFeeCalculator = () => {
       {/* START ADVERTISER: Liomen: Prime Skincare from awin.com */}
       <a 
         rel="sponsored" 
-        href="https://www.awin1.com/cread.php?s=3362521&v=50017&q=461498&r=2532679"
+        href="https://www.awin1.com/cread.php?s=2982965&v=1992&q=396725&r=2532679"
         className="block"
       >
         <img 
-          src="https://www.awin1.com/cshow.php?s=3362521&v=50017&q=461498&r=2532679" 
+          src="https://www.awin1.com/cshow.php?s=2982965&v=1992&q=396725&r=2532679" 
           alt="Liomen: Prime Skincare"
           className="max-w-full h-auto"
           style={{ border: 0 }}
